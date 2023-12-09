@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body id="b">
+    <div class="square">
+        <img id="trackimage" src="./image 1.png">
+        <div class="title">Unakku Than</div>
+        <div class="singer">&nbsp;Santhosh Narayanan</div>
+        <div class="timeflex">
+            <div class="time1">00:00</div>
+            <div class="time2">02:56</div>
+        </div>
+        <input type="range" id="slider1" min="0" max="100" value="0" onclick="change()">
+        <div class="flex2"><button onclick="prevsong()" id="prev"><i class="fa-solid fa-backward-step"
+                    style="color: #ffffff;"></i></button>
+            <button onclick="playsong()" id="play"><i class="fa-solid fa-play"
+                    style="color: #ffffff;"></i></button><button onclick="nextsong()" id="next"><i
+                    class="fa-solid fa-forward-step" style="color: #ffffff;"></i></button>
+        </div>
+
+    </div>
+    <script>
+        const image = document.querySelector("#trackimage");
+        const title = document.querySelector(".title");
+        const singer = document.querySelector(".singer");
+        const play = document.querySelector("#play");
+        const slider = document.querySelector("#slider1");
+        const time = document.querySelector(".time1");
+        const b = document.querySelector("#b");
+        let currentTime = 0;
+
+        let index = 0;
+        let timer;
+        let playing = false;
+        const audio1 = document.createElement("audio");
+        const Allsongs = [{
+            Name: "Unakku Than",
+            singer: "santhosh narayanan",
+            path: "chittha.jpg",
+            audio: "Unakku-Thaan-MassTamilan.dev.mp3",
+            color: "#CE7532"
+        }, {
+            Name: "Thalli Pogathey",
+            singer: "Simbu",
+            path: "aym.jpg",
+            audio: "Thalli-Pogathey.mp3",
+            color: "#30AAE6"
+        }];
+
+        function loadsong(index) {
+            clearInterval(timer);
+            reset_slider();
+            audio1.src = Allsongs[index].audio;
+            title.innerHTML = Allsongs[index].Name;
+            singer.innerHTML = Allsongs[index].singer;
+            image.src = Allsongs[index].path;
+            b.style.backgroundColor = Allsongs[index].color;
+
+            audio1.addEventListener("timeupdate", updateTime);
+
+
+        }
+        loadsong(0);
+        function playsong() {
+            if (playing == false) {
+                playsong1();
+            }
+            else {
+                pausesong();
+            }
+        }
+        function playsong1() {
+            audio1.play();
+            playing = true;
+            play.innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff"></i>`;
+        }
+        function pausesong() {
+            audio1.pause();
+            playing = false;
+            play.innerHTML = `<i class="fa-solid fa-play" style="color: #ffffff"></i>`
+        }
+
+        function reset_slider() {
+            slider.value = 0;
+        }
+        function change() {
+            sliderposition = (audio1.duration) * (slider.value / 100);
+            audio1.currentTime = sliderposition;
+        }
+        function prevsong() {
+            index = index - 1;
+            if (index >= 0) {
+                loadsong(index);
+                playsong();
+            }
+            else {
+                index = Allsongs.length - 1;
+                loadsong(index);
+                playsong();
+
+            }
+        }
+        function nextsong() {
+            index = index + 1;
+            if (index <= Allsongs.length - 1) {
+                loadsong(index);
+                playsong();
+
+            }
+            else {
+                index = 0;
+                loadsong(index);
+                playsong();
+
+            }
+        }
+        function updateTime() {
+            currentTime = audio1.currentTime;
+            slider.value = (currentTime / audio1.duration) * 100;
+        }
+
+    </script>
+</body>
+
+</html>

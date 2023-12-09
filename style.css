@@ -1,0 +1,100 @@
+body {
+    background: #CE7532;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin: 0px;
+
+}
+
+.square {
+    width: 369px;
+    height: 520px;
+    border-radius: 30px;
+    background: #1E1E2B;
+    position: absolute;
+    top: 150px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#trackimage {
+    padding: 25px 25px 20px 20px;
+    border-radius: 25px;
+    width: 329px;
+    height: 308px;
+}
+
+input {
+    width: 90%;
+    position: absolute;
+    left: 20px;
+    top: 436px;
+    -webkit-appearance: none;
+    height:5px;
+    overflow: hidden;
+    border-radius: 25px;
+}
+.data {
+    display: flex;
+    direction: column;
+    justify-content: center;
+}
+
+.title {
+    color: #FFF;
+    font-family: Jockey One;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.singer {
+    text-align: center;
+    color: #6B6B6B;
+    font-family: Jockey One;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.timeflex {
+    position: absolute;
+    display: flex;
+    gap: 251px;
+    top: 416px;
+    left: 25px;
+}
+
+.time1 {
+    color: #FFF;
+    font-family: Jockey One;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.time2 {
+    color: #FFF;
+    font-family: Jockey One;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.flex2{
+    display: flex;
+    position: absolute;
+    left: 40px;
+    top: 456px;
+    gap: 78px;
+}
+button{
+    width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: #30AAE6;
+}
